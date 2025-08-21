@@ -15,7 +15,7 @@ function Main() {
           placeholder="Enter your tracking code"
           className="flex-1 px-4 py-4 border-none focus:outline-none text-black"
         />
-        <button className="bg-orange-400 text-white px-6 py-4 hover:bg-orange-600 font-semibold">
+        <button className="bg-orange-400 text-white px-6 py-4 hover:bg-orange-600 font-semibold cursor-pointer">
           Track now
         </button>
       </div>

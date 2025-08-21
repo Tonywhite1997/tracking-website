@@ -5,7 +5,7 @@ function Nav() {
   const currentPage = useLocation().pathname;
 
   return (
-    <div className="h-15 px-25 flex justify-between items-center shadow-md font-medium">
+    <div className="h-12 px-25 flex justify-between items-center shadow-md font-medium">
       <div className="flex gap-5">
         <Link
           to="/"
@@ -15,6 +15,18 @@ function Nav() {
         >
           Track
         </Link>
+
+        <Link
+          to="/services"
+          className={`cursor-pointer hover:underline hover:text-orange-400 ${
+            currentPage === "/services"
+              ? "text-orange-400 underline"
+              : "text-black"
+          }`}
+        >
+          Our Services
+        </Link>
+
         <Link
           to="/customer-support"
           className={`cursor-pointer hover:underline hover:text-orange-400 ${

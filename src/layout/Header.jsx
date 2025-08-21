@@ -9,15 +9,6 @@ function Header() {
         FastTrack
       </Link>
       <div className="flex items-center gap-4">
-        {/* <div className="flex justify-center items-center gap-1">
-          <div className="p-2 rounded-full bg-orange-100">
-            <MdEmail className="text-orange-500 size-5" />
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <p>Contact Support</p>
-            <small className="font-medium">info@fastTrack.com</small>
-          </div>
-        </div> */}
         <div className="flex justify-center items-center gap-1 cursor-pointer hover:underline">
           <FaGlobe />
           <p>USA</p>
