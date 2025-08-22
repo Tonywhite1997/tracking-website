@@ -16,7 +16,7 @@ function Home({ images, currentIndex }) {
     <div className="flex flex-col w-full">
       <Header toggleMenu={toggleMenu} isOpen={isOpen} />
       <Nav toggleMenu={toggleMenu} isOpen={isOpen} />
-      <div className="relative w-full h-[calc(100vh-6.5rem)] flex flex-col justify-center items-center overflow-hidden">
+      <div className="relative w-full h-[calc(100vh-4.2rem)] flex flex-col justify-center items-center overflow-hidden">
         {images.map((src, index) => (
           <div
             key={index}
