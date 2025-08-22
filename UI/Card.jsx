@@ -1,5 +1,4 @@
-import React from "react";
-
+import { Link } from "react-router-dom";
 function Card({ Icon, title, description }) {
   return (
     <div
@@ -14,12 +13,13 @@ function Card({ Icon, title, description }) {
         vitae maxime suscipit molestias dicta eveniet eligendi. Totam vitae sed
         possimus qui porro?
       </p>
-      <div
+      <Link
+        to="/services"
         className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-100 text-orange-400 text-2xl mt-2 
                   transition duration-300 group-hover:bg-orange-400 group-hover:text-white"
       >
-        &rarr;
-      </div>
+        <p className="mb-1">&rarr;</p>
+      </Link>
     </div>
   );
 }

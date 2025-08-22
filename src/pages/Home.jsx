@@ -1,13 +1,21 @@
+import { useState } from "react";
 import Header from "../layout/Header";
 import Nav from "../layout/Nav";
 import Hero from "../layout/home/Hero";
 import Services from "../layout/home/Services";
+import CustomersCount from "../layout/home/CustomersCount";
+import Testimonial from "../layout/home/Testimonial";
+import FAQ from "../layout/home/FAQ";
+import Footer from "../layout/Footer";
 
 function Home({ images, currentIndex }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen((prev) => !prev);
   return (
     <div className="flex flex-col w-full">
-      <Header />
-      <Nav />
+      <Header toggleMenu={toggleMenu} isOpen={isOpen} />
+      <Nav toggleMenu={toggleMenu} isOpen={isOpen} />
       <div className="relative w-full h-[calc(100vh-6.5rem)] flex flex-col justify-center items-center overflow-hidden">
         {images.map((src, index) => (
           <div
@@ -22,6 +30,10 @@ function Home({ images, currentIndex }) {
         <Hero />
       </div>
       <Services />
+      <CustomersCount />
+      <Testimonial />
+      <FAQ />
+      <Footer />
     </div>
   );
 }

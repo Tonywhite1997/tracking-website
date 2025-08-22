@@ -1,52 +1,47 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-function Nav() {
+function Nav({ isOpen, toggleMenu }) {
   const currentPage = useLocation().pathname;
 
+  const linkClasses = (path) =>
+    `cursor-pointer hover:underline hover:text-orange-400 ${
+      currentPage === path ? "text-orange-400 underline" : "text-black"
+    }`;
+
   return (
-    <div className="h-12 px-25 flex justify-between items-center shadow-md font-medium">
-      <div className="flex gap-5">
-        <Link
-          to="/"
-          className={`cursor-pointer hover:underline hover:text-orange-400 ${
-            currentPage === "/" ? "text-orange-400 underline" : "text-black"
-          }`}
-        >
+    <nav
+      className={`sticky top-[68px] z-40 bg-amber-50 shadow-md md:shadow-none transition-all duration-300 ease-in-out overflow-hidden ${
+        isOpen ? "max-h-60" : "max-h-0"
+      } md:max-h-full`}
+    >
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-6 py-4 md:py-2 font-medium">
+        <Link to="/" className={linkClasses("/")} onClick={toggleMenu}>
           Track
         </Link>
-
         <Link
           to="/services"
-          className={`cursor-pointer hover:underline hover:text-orange-400 ${
-            currentPage === "/services"
-              ? "text-orange-400 underline"
-              : "text-black"
-          }`}
+          className={linkClasses("/services")}
+          onClick={toggleMenu}
         >
           Our Services
         </Link>
-
         <Link
           to="/customer-support"
-          className={`cursor-pointer hover:underline hover:text-orange-400 ${
-            currentPage === "/customer-support"
-              ? "text-orange-400 underline"
-              : "text-black"
-          }`}
+          className={linkClasses("/customer-support")}
+          onClick={toggleMenu}
         >
-          Customer support
+          Customer Support
+        </Link>
+        <Link
+          to="/login"
+          className={linkClasses("/login")}
+          onClick={toggleMenu}
+        >
+          Customer Portal Login
         </Link>
       </div>
-      <Link
-        to="/login"
-        className={`cursor-pointer hover:underline hover:text-orange-400 ${
-          currentPage === "/login" ? "text-orange-400 underline" : "text-black"
-        }`}
-      >
-        Customer portal login
-      </Link>
-    </div>
+    </nav>
   );
 }
 
