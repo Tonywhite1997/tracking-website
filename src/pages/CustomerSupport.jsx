@@ -17,7 +17,7 @@ function CustomerSupport() {
       </div>
 
       {/* Cards Section */}
-      <div className="max-w-6xl mx-auto py-16 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="w-full md:w-auto mx-auto py-16 px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Call Us */}
         <div className="relative overflow-hidden shadow-md shadow-orange-400/50 rounded-lg cursor-pointer group">
           {/* Animated Fill */}
@@ -74,11 +74,11 @@ function CustomerSupport() {
       </div>
 
       {/* Contact Form */}
-      <div className="max-w-4xl mx-auto py-16 px-6">
+      {/* <div className="max-w-4xl mx-auto py-16 px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-orange-500 mb-8 text-center">
           Send Us a Message
         </h2>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form className="grid grid-cols-1 border md:grid-cols-2 gap-6">
           <input
             type="text"
             placeholder="Your Name"
@@ -107,6 +107,46 @@ function CustomerSupport() {
           <button
             type="submit"
             className="md:col-span-2 bg-orange-400 text-white font-semibold px-6 py-3 rounded-md hover:bg-orange-600 transition"
+          >
+            Send Message
+          </button>
+        </form>
+      </div> */}
+
+      {/* Contact Form */}
+      <div className="w-full md:max-w-4xl mx-auto py-16 px-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-orange-500 mb-8 text-center">
+          Send Us a Message
+        </h2>
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          <input
+            type="text"
+            placeholder="Your Name"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <input
+            type="text"
+            placeholder="Subject"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <textarea
+            placeholder="Message"
+            rows="5"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          ></textarea>
+          <button
+            type="submit"
+            className="w-full md:col-span-2 bg-orange-400 text-white font-semibold px-6 py-3 rounded-md hover:bg-orange-600 transition"
           >
             Send Message
           </button>

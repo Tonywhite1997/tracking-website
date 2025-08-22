@@ -7,11 +7,17 @@ import CustomerSupport from "./pages/CustomerSupport";
 import CustomerLogin from "./pages/CustomerLogin";
 import Services from "./pages/OurServices";
 import Home from "./pages/Home";
+import ScrollToTop from "./components/ScrollToTop";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <>
+        <ScrollToTop />
+        <App />
+      </>
+    ),
     children: [
       { path: "/", element: <Home /> },
       { path: "/customer-support", element: <CustomerSupport /> },
