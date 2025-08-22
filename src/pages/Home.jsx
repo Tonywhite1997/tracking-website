@@ -30,7 +30,7 @@ function Home() {
   }, [images.length]);
   return (
     <div className="flex flex-col w-full">
-      <div className="relative w-full h-[calc(100vh-4.2rem)] flex flex-col justify-center items-center overflow-hidden">
+      <div className="relative w-full h-[calc(100vh-4.2rem)] flex flex-col justify-start py-20 items-center overflow-hidden">
         {images.map((src, index) => (
           <div
             key={index}

@@ -3,7 +3,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 
 function CustomerLogin() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen pt-20 py-10 flex items-start justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-md shadow-orange-400/50 p-8 transform transition duration-700 hover:scale-105">
         <h1 className="text-3xl font-bold text-orange-500 mb-6 text-center drop-shadow-md">
           Customer Portal Login
