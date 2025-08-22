@@ -5,9 +5,9 @@ function Card({ Icon, title, description }) {
       className="group w-65 p-7 shadow-lg bg-white rounded flex flex-col justify-center items-center cursor-pointer 
                 transform transition duration-300 hover:scale-105 hover:shadow-2xl"
     >
-      <Icon className="text-4xl text-orange-400" />
+      <div className="text-6xl mb-4">{Icon}</div>
       <h1 className="font-bold">{title}</h1>
-      <p className="text-justify line-clamp-3">
+      <p className="text-center line-clamp-3">
         {description} Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         Sed cumque veritatis nihil ex asperiores, dolores optio, laboriosam
         vitae maxime suscipit molestias dicta eveniet eligendi. Totam vitae sed

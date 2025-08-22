@@ -6,12 +6,19 @@ import App from "./App.jsx";
 import CustomerSupport from "./pages/CustomerSupport";
 import CustomerLogin from "./pages/CustomerLogin";
 import Services from "./pages/OurServices";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
-  { path: "/", element: <App /> },
-  { path: "/customer-support", element: <CustomerSupport /> },
-  { path: "/login", element: <CustomerLogin /> },
-  { path: "/services", element: <Services /> },
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/customer-support", element: <CustomerSupport /> },
+      { path: "/login", element: <CustomerLogin /> },
+      { path: "/services", element: <Services /> },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

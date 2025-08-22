@@ -1,34 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
-import Image1 from "/cargo-ship.jpg";
-import Image2 from "/cargo-lorry.jpg";
-import Image3 from "/cargo-plane.jpg";
-import Home from "./pages/Home";
+import Header from "./layout/Header";
+import Nav from "./layout/Nav";
+import Footer from "./layout/Footer";
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const images = [Image1, Image2, Image3];
-  useEffect(() => {
-    images.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const indexInterval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(indexInterval);
-  }, [images.length]);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
-    <>
-      <Home currentIndex={currentIndex} images={images} />
-    </>
+    <div className="flex flex-col min-h-screen">
+      <Header toggleMenu={toggleMenu} isOpen={isOpen} />
+      <Nav toggleMenu={toggleMenu} isOpen={isOpen} />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

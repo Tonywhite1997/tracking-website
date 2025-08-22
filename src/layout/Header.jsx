@@ -27,15 +27,13 @@ function Header({ toggleMenu, isOpen }) {
           <p>support@shiptrack.com</p>
         </div>
 
-        {/* Country Selector */}
         <div className="flex items-center gap-1 cursor-pointer hover:underline">
           <FaGlobe />
           <p>USA</p>
         </div>
 
-        {/* Hamburger Button (mobile) */}
         <button
-          className="md:hidden text-2xl"
+          className="md:hidden text-2xl cursor-pointer"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
