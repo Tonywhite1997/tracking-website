@@ -11,7 +11,7 @@ function App() {
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-dvh flex flex-col">
       <Header toggleMenu={toggleMenu} isOpen={isOpen} />
       <Nav toggleMenu={toggleMenu} isOpen={isOpen} />
       <main className="flex-1">

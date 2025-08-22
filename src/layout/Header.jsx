@@ -5,12 +5,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 
 function Header({ toggleMenu, isOpen }) {
   return (
-    <header
-      className="sticky top-0 z-50 flex justify-between items-center
-                 py-4 px-8 shadow-md
-                 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300
-                 text-white"
-    >
+    <header className="sticky top-0 z-50 flex justify-between items-center py-4 px-8 shadow-md bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 text-white">
       {/* Logo / Brand */}
       <Link
         to="/"

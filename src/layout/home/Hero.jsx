@@ -8,7 +8,7 @@ function Main() {
         Get real-time delivery updates and notifications for all your packages
       </p>
 
-      <div className="mt-5 w-full max-w-3xl flex flex-col md:flex-row bg-white rounded-md shadow-md overflow-hidden">
+      <div className="mt-10 w-full max-w-3xl flex flex-col md:flex-row bg-white rounded-md shadow-md overflow-hidden">
         <input
           type="text"
           placeholder="Enter your tracking code"
