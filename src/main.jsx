@@ -11,6 +11,7 @@ import Services from "./pages/OurServices";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Orders from "./pages/dashboardPages/Orders";
+import OrderDetails from "./pages/dashboardPages/OrderDetails";
 import Images from "./pages/dashboardPages/Images";
 import ChangePassword from "./pages/dashboardPages/ChangePassword";
 import ScrollToTop from "./components/ScrollToTop";
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Orders /> },
       { path: "orders", element: <Orders /> },
+      { path: "order/:id", element: <OrderDetails /> },
       { path: "images", element: <Images /> },
       { path: "password", element: <ChangePassword /> },
     ],
