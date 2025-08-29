@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { api } from "../main";
 
 function useOrder(id) {
@@ -8,7 +8,7 @@ function useOrder(id) {
     error,
     isRefetching,
   } = useQuery({
-    queryKey: ["Orders"],
+    queryKey: ["Order"],
     queryFn: () => api.get(`/order/${id}`),
   });
 

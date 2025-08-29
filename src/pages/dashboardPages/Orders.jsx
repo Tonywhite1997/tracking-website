@@ -9,9 +9,16 @@ function Orders() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4 text-orange-500">Orders</h1>
-      <p>Click any order to view details</p>
-      {isLoading && <div>loading your oders...</div>}
-      {isRefetching && <p>Updating your orders...</p>}
+      {orders?.data?.length > 0 && (
+        <p className="text-center">Click any order to view details</p>
+      )}
+      {isLoading && <p className="text-center">loading your oders...</p>}
+      {isRefetching && <p className="text-center">Updating your orders...</p>}
+      {!orders?.data?.length && (
+        <p className="text-center text-xl mb-2 text-red-500">
+          You have no available orders
+        </p>
+      )}
       {error && <p className="text-red-500">{error}</p>}
       {orders?.data && <OrdersTable orders={orders} />}
     </div>

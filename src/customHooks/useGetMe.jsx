@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 function useGetMe() {
   const getMequery = useQuery({
-    queryKey: ["me"],
+    queryKey: ["Me"],
     queryFn: () => api.get("/user"),
   });
 
