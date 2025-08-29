@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
-import { FaBox, FaImage, FaLock, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaBox,
+  FaImage,
+  FaUser,
+  FaLock,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import { FiPlusCircle } from "react-icons/fi";
 
 import Header from "../layout/Header";
@@ -50,6 +57,18 @@ function Dashboard() {
             onClick={() => setIsOpen(false)}
           >
             <FiPlusCircle /> New Order
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/sign-up"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded-md transition w-full ${
+                isActive ? "bg-orange-600" : "hover:bg-orange-400"
+              }`
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            <FaUser /> New User
           </NavLink>
 
           <NavLink

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -19,11 +20,18 @@ function CustomerLogin() {
     });
   }
 
-  const { mutation } = useLogin(loginDetails);
+  const { login, isSuccess, isPending, error } = useLogin(loginDetails);
 
-  if (mutation.isSuccess) {
-    navigate("/dashboard/orders");
+  function handleSubmit(e) {
+    e.preventDefault();
+    login(loginDetails);
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/dashboard/orders");
+    }
+  }, [isSuccess]);
 
   return (
     <div className="min-h-screen pt-20 py-10 flex items-start justify-center px-4">
@@ -33,7 +41,7 @@ function CustomerLogin() {
         </h1>
 
         {/* Form */}
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           {/* Username */}
           <div className="relative">
             <FaUserAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400" />
@@ -58,18 +66,17 @@ function CustomerLogin() {
               className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
             />
           </div>
-          {mutation.isError ? (
+          {error && (
             <small className="text-red-500 text-center">
               {" "}
-              {mutation.error?.response?.data?.message}{" "}
+              {error?.response?.data?.msg}{" "}
             </small>
-          ) : null}
+          )}
           <button
-            onClick={mutation.mutate}
             type="submit"
             className="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md cursor-pointer hover:shadow-lg"
           >
-            {mutation.isPending ? "Loading..." : "Login In"}
+            {isPending ? "Loading..." : "Login In"}
           </button>
         </form>
       </div>
