@@ -10,7 +10,7 @@ function useDeleteOrder() {
   } = useMutation({
     mutationKey: ["DeleteOrder"],
     mutationFn: (id) =>
-      api.delete("/order/delete-orders", { data: { orderID: id } }),
+      api.delete("/order/delete-order", { data: { orderID: id } }),
   });
 
   return {

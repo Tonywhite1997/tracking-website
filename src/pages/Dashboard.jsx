@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import { FaBox, FaImage, FaLock, FaBars, FaTimes } from "react-icons/fa";
+import { FiPlusCircle } from "react-icons/fi";
 
 import Header from "../layout/Header";
 
@@ -15,7 +16,7 @@ function Dashboard() {
       <div className="flex min-h-screen bg-gray-50">
         {/* Sidebar */}
         <div
-          className={`fixed ${headerNavHeight} left-0 h-[calc(100%-70px)] w-64 bg-orange-500 text-white p-6 space-y-6 transform transition-transform duration-300 z-40
+          className={`fixed ${headerNavHeight} left-0 h-[calc(100%-70px)] w-64 bg-orange-500 text-white p-6 transform transition-transform duration-300 z-40
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
         >
           {/* Close button (mobile only) */}
@@ -37,6 +38,18 @@ function Dashboard() {
             onClick={() => setIsOpen(false)}
           >
             <FaBox /> Orders
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/new-order"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded-md transition w-full ${
+                isActive ? "bg-orange-600" : "hover:bg-orange-400"
+              }`
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            <FiPlusCircle /> New Order
           </NavLink>
 
           <NavLink

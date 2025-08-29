@@ -1,34 +1,24 @@
+import { use } from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import useDeleteOrder from "../../customHooks/useDeleteOrder";
-import useEditOrder from "../../customHooks/useEditOrder";
-import { shippingDetails } from "../../helperfuncs/ShippingDetails";
-import { shippingOptions } from "../../helperfuncs/shippingOptions.js";
-useEditOrder;
+import useCreateOrder from "../../customHooks/useCreateOrder";
 
-function OrderForm({ order }) {
-  const [formData, setFormData] = useState(shippingDetails);
+const boilerPlate = {
+  receiver: {
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
+  },
+  name: "",
+  origin: "",
+  destination: "",
+  currentLocation: "",
+};
 
-  const [isDirty, setIsDirty] = useState(false);
+function NewOrder() {
+  const [formData, setFormData] = useState(boilerPlate);
 
-  useEffect(() => {
-    if (order) {
-      setFormData({
-        receiver: {
-          name: order.receiver?.name || "",
-          phone: order.receiver?.phone || "",
-          email: order.receiver?.email || "",
-          address: order.receiver?.address || "",
-        },
-        name: order.name || "",
-        trackingCode: order.trackingCode || "",
-        origin: order.origin || "",
-        destination: order.destination || "",
-        currentLocation: order.currentLocation || "",
-        shippingStatus: order.shippingStatus || "Pending",
-      });
-    }
-  }, [order]);
+  const [errMsg, setErrMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,49 +38,45 @@ function OrderForm({ order }) {
         [name]: value,
       }));
     }
-
-    setIsDirty(true);
   };
 
-  const { deleteOrder, deleteError, isDeleting, deleteSuccess } =
-    useDeleteOrder();
-
-  const { edit, isPending, error, isSuccess } = useEditOrder();
+  const { createOrder, isPending, isSuccess, error } = useCreateOrder();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    edit({ editedOrder: formData, id: order._id });
-    setIsDirty(false);
+
+    if (
+      !formData.receiver.address.trim() ||
+      !formData.receiver.email.trim() ||
+      !formData.receiver.phone.trim() ||
+      !formData.receiver.name.trim() ||
+      !formData.currentLocation.trim() ||
+      !formData.destination.trim() ||
+      !formData.origin.trim() ||
+      !formData.name.trim()
+    ) {
+      return setErrMsg("All fields required");
+    }
+
+    if (error) {
+      return setErrMsg(error?.response?.data?.msg);
+    }
+    try {
+      createOrder(formData);
+      setFormData(boilerPlate);
+    } catch (e) {
+      setErrMsg("");
+    }
   };
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    deleteSuccess && navigate("/dashboard/orders");
-  }, [deleteSuccess]);
-
   return (
     <div>
-      <div className="flex justify-center items-center gap-2 flex-col mb-4">
-        {order && <h1 className="font-bold text-3xl">{order.name}</h1>}
-        <button
-          className="border p-2 rounded bg-red-500 text-white hover:bg-amber-500 transition ease-in cursor-pointer"
-          disabled={isDeleting}
-          onClick={() => deleteOrder(order._id)}
-        >
-          {isDeleting
-            ? "Deleting..."
-            : deleteSuccess
-            ? "Order Deleted"
-            : "Delete Order"}
-        </button>
-        {deleteError && <small>{deleteError?.response?.data?.msg}</small>}
-      </div>
       <form
-        onSubmit={handleSubmit}
         className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 space-y-6"
+        onSubmit={handleSubmit}
       >
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Edit Order</h2>
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">
+          Create New Order
+        </h2>
 
         {/* Receiver Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -107,7 +93,7 @@ function OrderForm({ order }) {
           <div>
             <label className="block text-sm font-medium">Receiver Phone</label>
             <input
-              type="text"
+              type="number"
               name="receiver.phone"
               value={formData.receiver.phone}
               onChange={handleChange}
@@ -154,20 +140,6 @@ function OrderForm({ order }) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium">Tracking Code</label>
-            <input
-              type="text"
-              name="trackingCode"
-              readOnly
-              value={formData.trackingCode}
-              onChange={handleChange}
-              className="w-full border bg-gray-200 rounded-lg p-2"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
             <label className="block text-sm font-medium">Origin</label>
             <input
               type="text"
@@ -177,6 +149,9 @@ function OrderForm({ order }) {
               className="w-full border rounded-lg p-2"
             />
           </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium">Destination</label>
             <input
@@ -187,9 +162,6 @@ function OrderForm({ order }) {
               className="w-full border rounded-lg p-2"
             />
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium">
               Current Location
@@ -202,40 +174,25 @@ function OrderForm({ order }) {
               className="w-full border rounded-lg p-2"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium">Shipping Status</label>
-            <select
-              name="shippingStatus"
-              value={formData.shippingStatus}
-              onChange={handleChange}
-              className="w-full border rounded-lg p-2"
-            >
-              {shippingOptions.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
 
-        {error && <small>{editError}</small>}
-
-        {/* Edit Button */}
+        {errMsg && (
+          <div className="w-full text-center -mb-2">
+            <small className="text-red-500">{errMsg}</small>
+          </div>
+        )}
 
         <div className="pt-4">
           <button
             type="submit"
-            disabled={isPending || !isDirty}
-            className={`w-full cursor-pointer  ${
-              isDirty ? "bg-orange-500" : "bg-gray-600"
-            } text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition`}
+            disabled={isPending}
+            className={`w-full cursor-pointer  bg-orange-600  text-white px-4 py-2 rounded-lg hover:bg-orange-400 transition ease-in`}
           >
             {isPending
-              ? "Saving changes"
+              ? "Creating..."
               : isSuccess
-              ? "Changes Saved"
-              : "Edit Order"}
+              ? "Order Created"
+              : "Create Order"}
           </button>
         </div>
       </form>
@@ -243,4 +200,4 @@ function OrderForm({ order }) {
   );
 }
 
-export default OrderForm;
+export default NewOrder;

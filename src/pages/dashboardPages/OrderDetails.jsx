@@ -10,7 +10,9 @@ function OrderDetails() {
     <div>
       {isLoading && <p className="text-center">Loading order details...</p>}
       {isRefetching && <p className="text-center">Updating order details...</p>}
-      {error && <p className="text-red-500">{error}</p>}
+      {error && (
+        <p className="text-red-500 text-center">{error?.response?.data?.msg}</p>
+      )}
 
       <OrderForm order={order?.data} />
     </div>

@@ -1,11 +1,8 @@
-import { useState } from "react";
 import useOrders from "../../customHooks/useOrders";
 import OrdersTable from "../../layout/dashboard/OrdersTable";
 
 function Orders() {
   const { orders, isLoading, error, isRefetching } = useOrders();
-
-  // console.log(orders?.data);
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4 text-orange-500">Orders</h1>
@@ -14,12 +11,14 @@ function Orders() {
       )}
       {isLoading && <p className="text-center">loading your oders...</p>}
       {isRefetching && <p className="text-center">Updating your orders...</p>}
-      {!orders?.data?.length && (
+      {!orders?.data?.length && !isLoading && (
         <p className="text-center text-xl mb-2 text-red-500">
           You have no available orders
         </p>
       )}
-      {error && <p className="text-red-500">{error}</p>}
+      {error && (
+        <p className="text-red-500 text-center">{error?.response?.data?.msg}</p>
+      )}
       {orders?.data && <OrdersTable orders={orders} />}
     </div>
   );
