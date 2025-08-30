@@ -22,10 +22,9 @@ function OrderForm({ order }) {
         },
         name: order.name || "",
         trackingCode: order.trackingCode || "",
-        origin: order.origin || "",
         destination: order.destination || "",
         currentLocation: order.currentLocation || "",
-        shippingStatus: order.shippingStatus || "Pending",
+        shippingStatus: order.shippingStatus || "",
       });
     }
   }, [order]);
@@ -59,9 +58,17 @@ function OrderForm({ order }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    edit({ editedOrder: formData, id: order._id });
+    edit({
+      editedOrder: {
+        shippingStatus: formData.shippingStatus,
+        currentLocation: formData.currentLocation,
+      },
+      id: order._id,
+    });
     setIsDirty(false);
   };
+
+  const validShippingOptions = shippingOptions.filter((option) => {});
 
   const navigate = useNavigate();
 
@@ -99,19 +106,21 @@ function OrderForm({ order }) {
             <input
               type="text"
               name="receiver.name"
+              readOnly
               value={formData.receiver.name}
               onChange={handleChange}
-              className="w-full border rounded-lg p-2"
+              className="w-full border bg-gray-200 rounded-lg p-2"
             />
           </div>
           <div>
             <label className="block text-sm font-medium">Receiver Phone</label>
             <input
               type="text"
+              readOnly
               name="receiver.phone"
               value={formData.receiver.phone}
               onChange={handleChange}
-              className="w-full border rounded-lg p-2"
+              className="w-full border bg-gray-200 rounded-lg p-2"
             />
           </div>
         </div>
@@ -121,10 +130,11 @@ function OrderForm({ order }) {
             <label className="block text-sm font-medium">Receiver Email</label>
             <input
               type="email"
+              readOnly
               name="receiver.email"
               value={formData.receiver.email}
               onChange={handleChange}
-              className="w-full border rounded-lg p-2"
+              className="w-full border bg-gray-200 rounded-lg p-2"
             />
           </div>
           <div>
@@ -133,10 +143,11 @@ function OrderForm({ order }) {
             </label>
             <input
               type="text"
+              readOnly
               name="receiver.address"
               value={formData.receiver.address}
               onChange={handleChange}
-              className="w-full border rounded-lg p-2"
+              className="w-full border bg-gray-200 rounded-lg p-2"
             />
           </div>
         </div>
@@ -148,9 +159,10 @@ function OrderForm({ order }) {
             <input
               type="text"
               name="name"
+              readOnly
               value={formData.name}
               onChange={handleChange}
-              className="w-full border rounded-lg p-2"
+              className="w-full border bg-gray-200 rounded-lg p-2"
             />
           </div>
           <div>
@@ -166,27 +178,16 @@ function OrderForm({ order }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium">Origin</label>
-            <input
-              type="text"
-              name="origin"
-              value={formData.origin}
-              onChange={handleChange}
-              className="w-full border rounded-lg p-2"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Destination</label>
-            <input
-              type="text"
-              name="destination"
-              value={formData.destination}
-              onChange={handleChange}
-              className="w-full border rounded-lg p-2"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium">Destination</label>
+          <input
+            type="text"
+            name="destination"
+            readOnly
+            value={formData.destination}
+            onChange={handleChange}
+            className="w-full border bg-gray-200 rounded-lg p-2"
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

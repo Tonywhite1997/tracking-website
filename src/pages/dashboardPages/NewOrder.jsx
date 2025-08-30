@@ -1,5 +1,4 @@
-import { use } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useCreateOrder from "../../customHooks/useCreateOrder";
 
 const boilerPlate = {
@@ -10,7 +9,6 @@ const boilerPlate = {
     address: "",
   },
   name: "",
-  origin: "",
   destination: "",
   currentLocation: "",
 };
@@ -22,6 +20,8 @@ function NewOrder() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    setErrMsg("");
 
     if (name.startsWith("receiver.")) {
       const key = name.split(".")[1];
@@ -52,7 +52,6 @@ function NewOrder() {
       !formData.receiver.name.trim() ||
       !formData.currentLocation.trim() ||
       !formData.destination.trim() ||
-      !formData.origin.trim() ||
       !formData.name.trim()
     ) {
       return setErrMsg("All fields required");
@@ -128,27 +127,16 @@ function NewOrder() {
         </div>
 
         {/* Order Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium">Product Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full border rounded-lg p-2"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Origin</label>
-            <input
-              type="text"
-              name="origin"
-              value={formData.origin}
-              onChange={handleChange}
-              className="w-full border rounded-lg p-2"
-            />
-          </div>
+
+        <div>
+          <label className="block text-sm font-medium">Product Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full border rounded-lg p-2"
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -7,7 +7,6 @@ export const shippingDetails = {
   },
   name: "",
   trackingCode: "",
-  origin: "",
   destination: "",
   currentLocation: "",
   shippingStatus: "",

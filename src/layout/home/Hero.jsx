@@ -43,13 +43,17 @@ function Main() {
           className="flex-1 px-4 py-3 md:py-4 border-none focus:outline-none text-black"
         />
         <button
-          className="bg-orange-400 text-white px-6 py-3 md:py-4 hover:bg-orange-600 w-full font-semibold cursor-pointer mt-2 md:mt-0 transition ease-in"
+          className="bg-orange-400 text-white px-6 py-3 md:py-4 hover:bg-orange-600 font-semibold cursor-pointer mt-2 md:mt-0 transition ease-in"
           onClick={validateCode}
         >
           Track now
         </button>
-        {errMsg && <p className="text-red-500 py-2 px-2">{errMsg}</p>}
       </div>
+      {errMsg && (
+        <p className="text-red-500 py-3 px-6 w-auto rounded-b-md bg-white">
+          {errMsg}
+        </p>
+      )}
     </main>
   );
 }

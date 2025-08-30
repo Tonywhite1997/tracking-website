@@ -19,6 +19,8 @@ import Images from "./pages/dashboardPages/Images";
 import ChangePassword from "./pages/dashboardPages/ChangePassword";
 import ScrollToTop from "./components/ScrollToTop";
 
+import DHLTrackingPage from "./fakeDHL/TrackingTimelineItem";
+
 export const api = axios.create({
   baseURL: "http://localhost:5000/api",
   withCredentials: true,
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
       { path: "images", element: <Images /> },
       { path: "password", element: <ChangePassword /> },
     ],
+  },
+  {
+    path: "/fake-dhl",
+    element: <DHLTrackingPage />,
   },
 ]);
 
