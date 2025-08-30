@@ -14,6 +14,7 @@ import Orders from "./pages/dashboardPages/Orders";
 import NewOrder from "./pages/dashboardPages/NewOrder";
 import CreateUser from "./pages/dashboardPages/CreateUser";
 import OrderDetails from "./pages/dashboardPages/OrderDetails";
+import ShowTrackInfo from "./pages/TrackPage/ShowTrackInfo";
 import Images from "./pages/dashboardPages/Images";
 import ChangePassword from "./pages/dashboardPages/ChangePassword";
 import ScrollToTop from "./components/ScrollToTop";
@@ -39,6 +40,8 @@ const router = createBrowserRouter([
       { path: "/customer-support", element: <CustomerSupport /> },
       { path: "/login", element: <CustomerLogin /> },
       { path: "/services", element: <Services /> },
+      { path: "/track", element: <ShowTrackInfo /> },
+      { path: "/track/:trackingCode", element: <ShowTrackInfo /> },
     ],
   },
   {
