@@ -22,7 +22,7 @@ import ChangePassword from "./pages/dashboardPages/ChangePassword";
 import ScrollToTop from "./components/ScrollToTop";
 
 export const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://yoyotracker.onrender.com/api",
   withCredentials: true,
 });
 
