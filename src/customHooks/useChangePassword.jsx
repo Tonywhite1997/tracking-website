@@ -11,6 +11,7 @@ function useChangePassword() {
     mutationKey: ["ChangePassword"],
     mutationFn: ({ currentPassword, newPassword }) =>
       api.post("/user/change-password", { currentPassword, newPassword }),
+    retry: 1,
   });
 
   return {

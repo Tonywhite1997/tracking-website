@@ -5,6 +5,7 @@ function useGetMe() {
   const getMequery = useQuery({
     queryKey: ["Me"],
     queryFn: () => api.get("/user"),
+    retry: 1,
   });
 
   return { getMequery };

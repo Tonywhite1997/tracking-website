@@ -11,6 +11,7 @@ function useDeleteOrder() {
     mutationKey: ["DeleteOrder"],
     mutationFn: (id) =>
       api.delete("/order/delete-order", { data: { orderID: id } }),
+    retry: 1,
   });
 
   return {

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useDeleteOrder from "../../customHooks/useDeleteOrder";
 import useEditOrder from "../../customHooks/useEditOrder";
+import { formatDate } from "../../helperfuncs/formatDate";
 import { shippingDetails } from "../../helperfuncs/ShippingDetails";
 import { shippingOptions } from "../../helperfuncs/shippingOptions.js";
 useEditOrder;
@@ -51,6 +52,9 @@ function OrderForm({ order }) {
     setIsDirty(true);
   };
 
+  console.log(order?.createdAt);
+  console.log(order?.updatedAt);
+
   const { deleteOrder, deleteError, isDeleting, deleteSuccess } =
     useDeleteOrder();
 
@@ -68,18 +72,18 @@ function OrderForm({ order }) {
     setIsDirty(false);
   };
 
-  const validShippingOptions = shippingOptions.filter((option) => {});
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    deleteSuccess && navigate("/dashboard/orders");
+    deleteSuccess && navigate("/dashboard/my-orders");
   }, [deleteSuccess]);
 
   return (
     <div>
       <div className="flex justify-center items-center gap-2 flex-col mb-4">
         {order && <h1 className="font-bold text-3xl">{order.name}</h1>}
+        <p>Order created on: {formatDate(order?.createdAt)}</p>
+        <p className="-mt-2">Last updated at: {formatDate(order?.updatedAt)}</p>
         <button
           className="border p-2 rounded bg-red-500 text-white hover:bg-amber-500 transition ease-in cursor-pointer"
           disabled={isDeleting}

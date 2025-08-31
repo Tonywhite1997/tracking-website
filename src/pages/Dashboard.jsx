@@ -1,21 +1,34 @@
 import { useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   FaBox,
-  FaImage,
+  FaBoxes,
   FaUser,
   FaLock,
   FaBars,
   FaTimes,
+  FaUsers,
 } from "react-icons/fa";
 import { FiPlusCircle } from "react-icons/fi";
+import { LogOut } from "lucide-react";
 
 import Header from "../layout/Header";
+import useLogout from "../customHooks/useLogout";
+import { useEffect } from "react";
 
 function Dashboard() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const headerNavHeight = "top-[70px]"; // adjust to your header+nav height
+  const headerNavHeight = "top-[70px]";
+
+  const { logout, isPending, isSuccess } = useLogout();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+  }, [isSuccess]);
 
   return (
     <div>
@@ -36,7 +49,7 @@ function Dashboard() {
 
           {/* Links */}
           <NavLink
-            to="/dashboard/orders"
+            to="/dashboard/my-orders"
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-2 rounded-md transition w-full ${
                 isActive ? "bg-orange-600" : "hover:bg-orange-400"
@@ -44,7 +57,7 @@ function Dashboard() {
             }
             onClick={() => setIsOpen(false)}
           >
-            <FaBox /> Orders
+            <FaBox /> My Orders
           </NavLink>
 
           <NavLink
@@ -72,7 +85,7 @@ function Dashboard() {
           </NavLink>
 
           <NavLink
-            to="/dashboard/images"
+            to="/dashboard/all-orders"
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-2 rounded-md transition w-full ${
                 isActive ? "bg-orange-600" : "hover:bg-orange-400"
@@ -80,7 +93,19 @@ function Dashboard() {
             }
             onClick={() => setIsOpen(false)}
           >
-            <FaImage /> Images
+            <FaBoxes /> All Orders
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/users"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded-md transition w-full ${
+                isActive ? "bg-orange-600" : "hover:bg-orange-400"
+              }`
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            <FaUsers /> Users
           </NavLink>
 
           <NavLink
@@ -94,6 +119,14 @@ function Dashboard() {
           >
             <FaLock /> Change Password
           </NavLink>
+
+          <button
+            className=" w-full rounded-md p-1 flex items-center gap-3 pl-4 cursor-pointer hover:bg-orange-400"
+            onClick={logout}
+          >
+            <LogOut className="w-5 h-5" />
+            {isPending ? "Logging out..." : "Logout"}
+          </button>
         </div>
 
         {/* Hamburger button (mobile only) */}

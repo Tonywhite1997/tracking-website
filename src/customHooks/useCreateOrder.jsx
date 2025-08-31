@@ -10,6 +10,7 @@ function useCreateOrder() {
   } = useMutation({
     mutationKey: ["NewOrder"],
     mutationFn: (shippingDetails) => api.post("/order/new", shippingDetails),
+    retry: 1,
   });
 
   return { createOrder, isPending, isSuccess, error };

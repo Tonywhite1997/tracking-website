@@ -15,7 +15,9 @@ import NewOrder from "./pages/dashboardPages/NewOrder";
 import CreateUser from "./pages/dashboardPages/CreateUser";
 import OrderDetails from "./pages/dashboardPages/OrderDetails";
 import ShowTrackInfo from "./pages/TrackPage/ShowTrackInfo";
-import Images from "./pages/dashboardPages/Images";
+import AllOrders from "./pages/dashboardPages/AllOrders";
+import Users from "./pages/dashboardPages/Users";
+import EditUser from "./pages/dashboardPages/EditUser";
 import ChangePassword from "./pages/dashboardPages/ChangePassword";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -53,11 +55,13 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <Orders /> },
-      { path: "orders", element: <Orders /> },
+      { path: "my-orders", element: <Orders /> },
       { path: "order/:id", element: <OrderDetails /> },
       { path: "new-order", element: <NewOrder /> },
       { path: "sign-up", element: <CreateUser /> },
-      { path: "images", element: <Images /> },
+      { path: "all-orders", element: <AllOrders /> },
+      { path: "users", element: <Users /> },
+      { path: "users/:id", element: <EditUser /> },
       { path: "password", element: <ChangePassword /> },
     ],
   },

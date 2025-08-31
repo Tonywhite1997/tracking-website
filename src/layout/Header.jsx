@@ -7,13 +7,13 @@ function Header({ toggleMenu, isOpen }) {
   const { pathname } = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center py-4 px-8 shadow-md bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 text-white">
+    <header className="sticky top-0 z-50 flex justify-between items-center py-4 px-8 text-orange-400 bg-orange-50 shadow-md">
       {/* Logo / Brand */}
       <Link
         to="/"
-        className="text-3xl font-bold tracking-wide hover:opacity-90 transition"
+        className="text-3xl font-bold text-orange-500 tracking-wide hover:opacity-90 transition"
       >
-        Ship<span className="text-gray-900">Track</span>
+        Ship<span className="text-gray-700">Track</span>
       </Link>
 
       {/* Right Side */}

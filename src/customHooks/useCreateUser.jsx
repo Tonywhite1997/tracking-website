@@ -12,6 +12,7 @@ function useCreateUser() {
     mutationFn: ({ email, password, username }) => {
       return api.post("/user/sign-up", { email, password, name: username });
     },
+    retry: 1,
   });
   return { createUser, isPending, isSuccess, error };
 }

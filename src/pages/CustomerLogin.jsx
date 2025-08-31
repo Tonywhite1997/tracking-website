@@ -29,7 +29,7 @@ function CustomerLogin() {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate("/dashboard/orders");
+      navigate("/dashboard/my-orders");
     }
   }, [isSuccess]);
 

@@ -1,20 +1,19 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "../main";
 
-function useEditOrder() {
+function useEditUser() {
   const {
     mutate: edit,
     error,
     isPending,
     isSuccess,
   } = useMutation({
-    mutationKey: ["EditOrder"],
-    mutationFn: ({ id, editedOrder }) =>
-      api.patch(`/order/edit-order/${id}`, editedOrder),
+    mutationKey: ["EditUser"],
+    mutationFn: ({ id, editedUser }) => api.patch(`/user/${id}`, editedUser),
     retry: 1,
   });
 
   return { edit, error, isPending, isSuccess };
 }
 
-export default useEditOrder;
+export default useEditUser;

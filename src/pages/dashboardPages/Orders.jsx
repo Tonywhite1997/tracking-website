@@ -5,7 +5,7 @@ function Orders() {
   const { orders, isLoading, error, isRefetching } = useOrders();
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-orange-500">Orders</h1>
+      <h1 className="text-2xl font-bold mb-4 text-orange-500">My Orders</h1>
       {orders?.data?.length > 0 && (
         <p className="text-center">Click any order to view details</p>
       )}

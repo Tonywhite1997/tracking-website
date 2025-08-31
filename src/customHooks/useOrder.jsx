@@ -10,6 +10,7 @@ function useOrder(id) {
   } = useQuery({
     queryKey: ["Order"],
     queryFn: () => api.get(`/order/${id}`),
+    retry: 1,
   });
 
   return { order, isRefetching, isLoading, error };

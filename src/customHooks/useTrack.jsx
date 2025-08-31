@@ -13,6 +13,7 @@ function useTrack(trackingCode) {
     queryKey: ["Track Order"],
     queryFn: () => api.get(`/order/track/${trackingCode}`),
     enabled: false,
+    retry: 1,
   });
 
   return { data, trackOrder, isFetching, isSuccess, error };
