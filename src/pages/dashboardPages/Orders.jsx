@@ -2,7 +2,7 @@ import useOrders from "../../customHooks/useOrders";
 import OrdersTable from "../../layout/dashboard/OrdersTable";
 
 function Orders() {
-  const { orders, isLoading, error, isRefetching } = useOrders();
+  const { orders, isSuccess, isLoading, error, isRefetching } = useOrders();
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4 text-orange-500">My Orders</h1>
@@ -11,7 +11,7 @@ function Orders() {
       )}
       {isLoading && <p className="text-center">loading your oders...</p>}
       {isRefetching && <p className="text-center">Updating your orders...</p>}
-      {!orders?.data?.length && !isLoading && (
+      {isSuccess && !orders?.data?.length && !isLoading && (
         <p className="text-center text-xl mb-2 text-red-500">
           You have no available orders
         </p>

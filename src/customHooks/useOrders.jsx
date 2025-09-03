@@ -7,13 +7,14 @@ function useOrders() {
     isLoading,
     error,
     isRefetching,
+    isSuccess,
   } = useQuery({
     queryKey: ["Orders"],
     queryFn: () => api.get("/order/my-orders"),
     retry: 1,
   });
 
-  return { orders, isRefetching, isLoading, error };
+  return { orders, isSuccess, isRefetching, isLoading, error };
 }
 
 export default useOrders;

@@ -19,7 +19,7 @@ function Nav({ isOpen, toggleMenu }) {
     bg-white shadow-md 
     fixed top-[68px] left-0 w-full z-50 md:top-[68px]`}
     >
-      <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-6 py-4 md:py-2 font-medium">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-5 md:px-8 py-4 md:py-2 font-medium">
         <Link to="/" className={linkClasses("/")} onClick={toggleMenu}>
           Track
         </Link>

@@ -21,7 +21,7 @@ function AllOrders() {
       )}
       {isSuccess && (
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead className="bg-orange-500 text-white">
+          <thead className="bg-orange-100">
             <tr>
               <th className="text-left py-3 px-4">Name</th>
               <th className="text-left py-3 px-4">Tracking Code</th>

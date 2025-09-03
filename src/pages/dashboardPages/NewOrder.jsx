@@ -1,20 +1,10 @@
 import { useState } from "react";
 import useCreateOrder from "../../customHooks/useCreateOrder";
 
-const boilerPlate = {
-  receiver: {
-    name: "",
-    phone: "",
-    email: "",
-    address: "",
-  },
-  name: "",
-  destination: "",
-  currentLocation: "",
-};
+import { shippingDetails } from "../../helperfuncs/ShippingDetails";
 
 function NewOrder() {
-  const [formData, setFormData] = useState(boilerPlate);
+  const [formData, setFormData] = useState(shippingDetails);
 
   const [errMsg, setErrMsg] = useState("");
 
@@ -29,6 +19,24 @@ function NewOrder() {
         ...prev,
         receiver: {
           ...prev.receiver,
+          [key]: value,
+        },
+      }));
+    } else if (name.startsWith("sender.")) {
+      const key = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        sender: {
+          ...prev.sender,
+          [key]: value,
+        },
+      }));
+    } else if (name.startsWith("packageDescription.")) {
+      const key = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        packageDescription: {
+          ...prev.packageDescription,
           [key]: value,
         },
       }));
@@ -49,9 +57,15 @@ function NewOrder() {
       !formData.receiver.address.trim() ||
       !formData.receiver.email.trim() ||
       !formData.receiver.phone.trim() ||
+      !formData.sender.name.trim() ||
+      !formData.sender.address.trim() ||
       !formData.receiver.name.trim() ||
+      !formData.packageDescription.weight.trim() ||
+      !formData.packageDescription.quantity.trim() ||
       !formData.currentLocation.trim() ||
       !formData.destination.trim() ||
+      !formData.remark.trim() ||
+      !formData.estimatedDelivery.trim() ||
       !formData.name.trim()
     ) {
       return setErrMsg("All fields required");
@@ -92,7 +106,7 @@ function NewOrder() {
           <div>
             <label className="block text-sm font-medium">Receiver Phone</label>
             <input
-              type="number"
+              type="text"
               name="receiver.phone"
               value={formData.receiver.phone}
               onChange={handleChange}
@@ -100,6 +114,8 @@ function NewOrder() {
             />
           </div>
         </div>
+
+        {/* {sender info} */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -126,17 +142,81 @@ function NewOrder() {
           </div>
         </div>
 
-        {/* Order Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">Sender Name</label>
+            <input
+              type="text"
+              name="sender.name"
+              value={formData.sender.name}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Sender Address</label>
+            <input
+              type="text"
+              name="sender.address"
+              value={formData.sender.address}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
+        </div>
 
-        <div>
-          <label className="block text-sm font-medium">Product Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-2"
-          />
+        {/* {package description} */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">
+              Pkg quantity(boxes/pieces)
+            </label>
+            <input
+              type="text"
+              name="packageDescription.quantity"
+              value={formData.packageDescription.quantity}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">
+              Package Weight(KG)
+            </label>
+            <input
+              type="text"
+              name="packageDescription.weight"
+              value={formData.packageDescription.weight}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
+        </div>
+
+        {/* Order Info */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">Product</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">
+              Estimated Delivery Time
+            </label>
+            <input
+              type="date"
+              name="estimatedDelivery"
+              value={formData.estimatedDelivery}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -162,6 +242,16 @@ function NewOrder() {
               className="w-full border rounded-lg p-2"
             />
           </div>
+        </div>
+        <div>
+          <label className="block text-sm font-medium">remark</label>
+          <input
+            type="text"
+            name="remark"
+            value={formData.remark}
+            onChange={handleChange}
+            className="w-full border rounded-lg p-2"
+          />
         </div>
 
         {errMsg && (

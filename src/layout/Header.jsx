@@ -7,7 +7,7 @@ function Header({ toggleMenu, isOpen }) {
   const { pathname } = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center py-4 px-8 text-orange-400 bg-orange-50 shadow-md">
+    <header className="sticky top-0 z-50 flex justify-between items-center py-4 px-5 md:px-8 text-orange-400 bg-orange-50 shadow-md">
       {/* Logo / Brand */}
       <Link
         to="/"

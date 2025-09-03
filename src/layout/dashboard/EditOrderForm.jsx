@@ -21,11 +21,22 @@ function OrderForm({ order }) {
           email: order.receiver?.email || "",
           address: order.receiver?.address || "",
         },
-        name: order.name || "",
-        trackingCode: order.trackingCode || "",
-        destination: order.destination || "",
-        currentLocation: order.currentLocation || "",
-        shippingStatus: order.shippingStatus || "",
+        sender: {
+          name: order.sender?.name || "",
+          address: order.sender?.address || "",
+        },
+        packageDescription: {
+          SKU: order.packageDescription?.SKU || "",
+          weight: order.packageDescription?.weight || "",
+          quantity: order.packageDescription?.quantity || "",
+        },
+        estimatedDelivery: order.estimatedDelivery || "",
+        name: order?.name || "",
+        remark: order?.remark || "",
+        trackingCode: order?.trackingCode || "",
+        destination: order?.destination || "",
+        currentLocation: order?.currentLocation || "",
+        shippingStatus: order?.shippingStatus || "",
       });
     }
   }, [order]);
@@ -42,18 +53,32 @@ function OrderForm({ order }) {
           [key]: value,
         },
       }));
+    } else if (name.startsWith("packageDescription.")) {
+      const key = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        packageDescription: {
+          ...prev.packageDescription,
+          [key]: value,
+        },
+      }));
+    } else if (name.startsWith("sender.")) {
+      const key = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        sender: {
+          ...prev.sender,
+          [key]: value,
+        },
+      }));
     } else {
       setFormData((prev) => ({
         ...prev,
         [name]: value,
       }));
     }
-
     setIsDirty(true);
   };
-
-  console.log(order?.createdAt);
-  console.log(order?.updatedAt);
 
   const { deleteOrder, deleteError, isDeleting, deleteSuccess } =
     useDeleteOrder();
@@ -66,6 +91,8 @@ function OrderForm({ order }) {
       editedOrder: {
         shippingStatus: formData.shippingStatus,
         currentLocation: formData.currentLocation,
+        remark: formData.remark,
+        estimatedDelivery: formData.estimatedDelivery,
       },
       id: order._id,
     });
@@ -156,6 +183,62 @@ function OrderForm({ order }) {
           </div>
         </div>
 
+        {/* {sender details} */}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">Sender Name</label>
+            <input
+              type="text"
+              name="sender.name"
+              readOnly
+              value={formData.sender.name}
+              onChange={handleChange}
+              className="w-full border bg-gray-200 rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Sender Address</label>
+            <input
+              type="text"
+              readOnly
+              name="sender.address"
+              value={formData.sender.address}
+              onChange={handleChange}
+              className="w-full border bg-gray-200 rounded-lg p-2"
+            />
+          </div>
+        </div>
+
+        {/* {package description} */}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">SKU Number</label>
+            <input
+              type="text"
+              name="packageDescription.SKU"
+              readOnly
+              value={formData.packageDescription.SKU}
+              onChange={handleChange}
+              className="w-full border bg-gray-200 rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">
+              Quantity(Boxes/Pieces)
+            </label>
+            <input
+              type="text"
+              readOnly
+              name="packageDescription.quantity"
+              value={formData.packageDescription.quantity}
+              onChange={handleChange}
+              className="w-full border bg-gray-200 rounded-lg p-2"
+            />
+          </div>
+        </div>
+
         {/* Order Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -182,16 +265,29 @@ function OrderForm({ order }) {
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium">Destination</label>
-          <input
-            type="text"
-            name="destination"
-            readOnly
-            value={formData.destination}
-            onChange={handleChange}
-            className="w-full border bg-gray-200 rounded-lg p-2"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">Destination</label>
+            <input
+              type="text"
+              name="destination"
+              readOnly
+              value={formData.destination}
+              onChange={handleChange}
+              className="w-full border bg-gray-200 rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Weight(KG)</label>
+            <input
+              type="text"
+              name="packageDescription.weight"
+              readOnly
+              value={formData.packageDescription.weight}
+              onChange={handleChange}
+              className="w-full border bg-gray-200 rounded-lg p-2"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -221,6 +317,36 @@ function OrderForm({ order }) {
                 </option>
               ))}
             </select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium">
+              Est Delivery Date
+            </label>
+            <input
+              type="date"
+              name="estimatedDelivery"
+              value={
+                formData.estimatedDelivery &&
+                new Date(formData?.estimatedDelivery)
+                  .toISOString()
+                  .split("T")[0]
+              }
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Remark</label>
+            <input
+              type="text"
+              name="remark"
+              value={formData.remark}
+              onChange={handleChange}
+              className="w-full border rounded-lg p-2"
+            />
           </div>
         </div>
 

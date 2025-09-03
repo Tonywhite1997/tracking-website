@@ -5,9 +5,17 @@ export const shippingDetails = {
     email: "",
     address: "",
   },
+  sender: {
+    name: "",
+    address: "",
+  },
+  estimatedDelivery: "",
+  packageDescription: {
+    quantity: "",
+    weight: "",
+  },
+  remark: "",
   name: "",
-  trackingCode: "",
   destination: "",
   currentLocation: "",
-  shippingStatus: "",
 };

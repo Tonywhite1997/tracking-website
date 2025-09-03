@@ -1,36 +1,72 @@
 import { MapPin, Truck, CheckCircle } from "lucide-react";
+import { formatDate } from "../helperfuncs/formatDate";
 import optimizedStatus from "../helperfuncs/optimizedStatus";
 
 export default function ShipmentTracking({ order }) {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      {/* Title */}
-      <h1 className="text-3xl font-bold mb-6">Shipment Updates</h1>
+    <div className="min-h-screen flex flex-col items-center p-6 md:mt-4">
+      <div className="flex justify-between w-full border-b-orange-500 border-b-10 pb-2">
+        <div>
+          <h1 className="font-bold">Shipment Dates</h1>
+          <p>Depature Date:{new Date(order.createdAt).toLocaleDateString()}</p>
+          <p>
+            Est. Delivery Date:
+            {new Date(order.estimatedDelivery).toLocaleDateString()}
+          </p>
+        </div>
+        <div>
+          <h1 className="font-bold">Destination</h1>
+          <p>{order.destination}</p>
+        </div>
+      </div>
 
-      {/* Tracking Summary Card */}
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-md p-6 mb-8">
-        <div className="flex justify-between items-center flex-wrap gap-4">
+      <div className="w-full border-b-orange-500 border-b-10 pb-2">
+        <h1 className="font-bold border-b-2 mb-1 border-orange-200">
+          Shipment Profile
+        </h1>
+        <div className="flex justify-between gap-4">
           <div>
-            <p className="text-gray-500">Tracking Code</p>
-            <p className="font-semibold text-xl">{order.trackingCode}</p>
+            <h1 className="underline">Sender Details</h1>
+            <p>Name: {order.sender.name}</p>
+            <p>Address: {order.sender.address}</p>
+            <p>Package Location: {order.currentLocation}</p>
           </div>
           <div>
-            <p className="text-gray-500">Destination</p>
-            <p className="font-medium flex items-center gap-2">
-              <MapPin size={18} className="text-green-500" />{" "}
-              {order.destination}
-            </p>
-          </div>
-          <div>
-            <p className="text-gray-500">Package Name</p>
-            <p className="font-medium flex items-center gap-2">{order.name}</p>
+            <h1 className="underline">Receiver Details</h1>
+            <p>Name: {order.receiver.name}</p>
+            <p>Address: {order.receiver.address}</p>
+            <p>Email: {order.receiver.email}</p>
+            <p>Phone: {order.receiver.phone}</p>
           </div>
         </div>
       </div>
 
+      <div className="w-full border-b-orange-500 border-b-10 pb-2">
+        <h1 className="font-bold border-b-2 mb-1 border-orange-200">
+          Shipment content/description
+        </h1>
+        <div className="flex gap-2 justify-between mt-2">
+          <p>SKU Number: {order.packageDescription.SKU}</p>
+          <p>Quantity: {order.packageDescription.quantity}</p>
+          <p>Weight: {order.packageDescription.weight}</p>
+        </div>
+      </div>
+
+      <div className="w-full  border-b-orange-500 border-b-10 pb-2">
+        <h1 className="font-bold border-b-2 mb-1 border-orange-200">
+          Shipment facts
+        </h1>
+        <div className="flex justify-between">
+          <p>Content: {order.name}</p>
+          <p>Remark: {order.remark}</p>
+        </div>
+      </div>
+
       {/* Tracking History Timeline */}
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-md p-6">
-        <h2 className="text-xl font-semibold mb-6">Shipment History</h2>
+      <div className="w-full max-w-4xl -mt-2 pb-2 ">
+        <h2 className="font-bold mb-6 mt-2 border-b-2 border-orange-200">
+          Shipment History
+        </h2>
         <div className="relative">
           <div className="absolute left-3 top-0 h-full w-1 bg-gray-200"></div>
           {order.history
@@ -39,13 +75,32 @@ export default function ShipmentTracking({ order }) {
             .map((item, index) => (
               <div key={item._id} className="relative pl-10 mb-8">
                 {/* Icon */}
+
                 <div
+                  className={`absolute left-0 w-6 h-6 rounded-full flex items-center justify-center ${
+                    index === 0 &&
+                    order.history[order.history.length - 1].status !==
+                      "delivered"
+                      ? "bg-yellow-500 text-white"
+                      : "bg-green-500 text-white"
+                  }`}
+                >
+                  {/* <div
+                  className={`absolute left-0 w-6 h-6 rounded-full flex items-center justify-center ${
+                    item.status === "delivered"
+                      ? "bg-green-500 text-white"
+                      : index === 0
+                      ? "bg-yellow-500 text-white"
+                      : "bg-gray-400 text-white"
+                  }`}
+                > */}
+                  {/* <div
                   className={`absolute left-0 w-6 h-6 rounded-full flex items-center justify-center ${
                     index === 0
                       ? "bg-yellow-500 text-white"
                       : "bg-green-500 text-white"
                   }`}
-                >
+                > */}
                   {index === 0 ? (
                     <Truck size={16} />
                   ) : (
@@ -54,11 +109,10 @@ export default function ShipmentTracking({ order }) {
                 </div>
 
                 {/* Content */}
-                <p className="font-medium">{optimizedStatus(item.status)}</p>
-                <p className="text-sm text-gray-600">{item.location}</p>
-                <p className="text-xs font-bold text-gray-400">
-                  {new Date(item.date).toLocaleString()}
-                </p>
+                <p className="font-medium">{item.status}</p>
+                <p className=" text-gray-600">{item.remark}</p>
+                <p className="text-xs text-gray-600">{item.location}</p>
+                <p className="text-xs text-gray-600">{formatDate(item.date)}</p>
               </div>
             ))}
         </div>

@@ -36,7 +36,7 @@ function Dashboard() {
       <div className="flex min-h-screen bg-gray-50">
         {/* Sidebar */}
         <div
-          className={`fixed ${headerNavHeight} left-0 h-[calc(100%-70px)] w-64 bg-orange-500 text-white p-6 transform transition-transform duration-300 z-40
+          className={`fixed ${headerNavHeight} left-0 h-[calc(100%-70px)] w-64 bg-orange-100 p-6 transform transition-transform duration-300 z-40
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
         >
           {/* Close button (mobile only) */}
