@@ -85,7 +85,7 @@ export default function ShipmentTracking({ order }) {
                       : "bg-green-500 text-white"
                   }`}
                 >
-                  {index === 0 ? (
+                  {index === 0 && item.status !== "Delivered" ? (
                     <Truck size={16} />
                   ) : (
                     <CheckCircle size={16} />
