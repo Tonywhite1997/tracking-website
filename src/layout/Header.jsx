@@ -13,7 +13,7 @@ function Header({ toggleMenu, isOpen }) {
         to="/"
         className="text-3xl font-bold text-orange-500 tracking-wide hover:opacity-90 transition"
       >
-        Ship<span className="text-gray-700">Track</span>
+        Yoyo<span className="text-gray-700">Track</span>
       </Link>
 
       {/* Right Side */}

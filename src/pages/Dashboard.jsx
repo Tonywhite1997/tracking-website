@@ -132,7 +132,7 @@ function Dashboard() {
         {/* Hamburger button (mobile only) */}
         {!isOpen && (
           <button
-            className={`md:hidden fixed ${headerNavHeight} left-1 z-50 bg-orange-500 text-white p-2 rounded-md shadow-md cursor-pointer`}
+            className={`md:hidden fixed ${headerNavHeight} left-0 z-50 bg-orange-500 text-white p-2 shadow-md cursor-pointer`}
             onClick={() => setIsOpen(true)}
           >
             <FaBars size={20} />

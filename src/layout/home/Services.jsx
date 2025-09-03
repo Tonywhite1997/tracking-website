@@ -2,7 +2,6 @@ import Card from "../../../UI/Card";
 import services from "../../helperfuncs/services.js";
 
 function Services() {
-  const ourServices = services;
   return (
     <div className=" flex flex-col justify-center items-center gap-3 py-16">
       <h1 className="text-3xl md:text-4xl font-bold">Our Services</h1>

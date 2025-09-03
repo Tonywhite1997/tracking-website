@@ -1,10 +1,9 @@
-import { MapPin, Truck, CheckCircle } from "lucide-react";
+import { Truck, CheckCircle } from "lucide-react";
 import { formatDate } from "../helperfuncs/formatDate";
-import optimizedStatus from "../helperfuncs/optimizedStatus";
 
 export default function ShipmentTracking({ order }) {
   return (
-    <div className="min-h-screen flex flex-col items-center p-6 md:mt-4">
+    <div className="min-h-screen flex flex-col items-center -mt-2 px-6 md:py-8">
       <div className="flex justify-between w-full border-b-orange-500 border-b-10 pb-2">
         <div>
           <h1 className="font-bold">Shipment Dates</h1>
@@ -56,7 +55,7 @@ export default function ShipmentTracking({ order }) {
         <h1 className="font-bold border-b-2 mb-1 border-orange-200">
           Shipment facts
         </h1>
-        <div className="flex justify-between gap-4">
+        <div>
           <p>Content: {order.name}</p>
           <p>Remark: {order.remark}</p>
         </div>
@@ -67,7 +66,7 @@ export default function ShipmentTracking({ order }) {
         <h2 className="font-bold mb-6 mt-2 border-b-2 border-orange-200">
           Shipment History
         </h2>
-        <div className="relative">
+        <div className="relative -mt-4">
           <div className="absolute left-3 top-0 h-full w-1 bg-gray-200"></div>
           {order.history
             .slice()
