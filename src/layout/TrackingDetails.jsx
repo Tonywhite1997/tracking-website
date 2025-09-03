@@ -56,7 +56,7 @@ export default function ShipmentTracking({ order }) {
         <h1 className="font-bold border-b-2 mb-1 border-orange-200">
           Shipment facts
         </h1>
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-4">
           <p>Content: {order.name}</p>
           <p>Remark: {order.remark}</p>
         </div>
@@ -80,27 +80,11 @@ export default function ShipmentTracking({ order }) {
                   className={`absolute left-0 w-6 h-6 rounded-full flex items-center justify-center ${
                     index === 0 &&
                     order.history[order.history.length - 1].status !==
-                      "delivered"
+                      "Delivered"
                       ? "bg-yellow-500 text-white"
                       : "bg-green-500 text-white"
                   }`}
                 >
-                  {/* <div
-                  className={`absolute left-0 w-6 h-6 rounded-full flex items-center justify-center ${
-                    item.status === "delivered"
-                      ? "bg-green-500 text-white"
-                      : index === 0
-                      ? "bg-yellow-500 text-white"
-                      : "bg-gray-400 text-white"
-                  }`}
-                > */}
-                  {/* <div
-                  className={`absolute left-0 w-6 h-6 rounded-full flex items-center justify-center ${
-                    index === 0
-                      ? "bg-yellow-500 text-white"
-                      : "bg-green-500 text-white"
-                  }`}
-                > */}
                   {index === 0 ? (
                     <Truck size={16} />
                   ) : (
