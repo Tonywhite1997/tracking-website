@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function OrdersTable({ orders }) {
   return (
-    <div className="overflow-x-auto w-full">
-      <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="overflow-x-scroll w-full no-scrollbar">
+      <table className="min-w-full bg-white shadow-md rounded-lg overflow-x-scroll">
         <thead className="bg-orange-50 text-gray-700">
           <tr>
             <th className="text-left py-3 px-4">Name</th>
@@ -18,7 +18,7 @@ function OrdersTable({ orders }) {
               key={order._id}
               className="border-b last:border-none hover:bg-orange-50 transition"
             >
-              <td className="py-3 px-4 break-words break-all whitespace-normal max-w-xs">
+              <td className="py-3 px-4  max-w-xs">
                 <Link
                   to={`/dashboard/order/${order._id}`}
                   className="block w-full h-full"
@@ -26,7 +26,7 @@ function OrdersTable({ orders }) {
                   {order.name}
                 </Link>
               </td>
-              <td className="py-3 px-4 break-words break-all whitespace-normal max-w-xs">
+              <td className="py-3 px-4  max-w-xs">
                 <Link
                   to={`/dashboard/order/${order._id}`}
                   className="block w-full h-full"
@@ -52,7 +52,7 @@ function OrdersTable({ orders }) {
                   </span>
                 </Link>
               </td>
-              <td className="py-3 px-4 break-words break-all whitespace-normal max-w-xs">
+              <td className="py-3 px-4  max-w-xs">
                 <Link
                   to={`/dashboard/order/${order._id}`}
                   className="block w-full h-full"

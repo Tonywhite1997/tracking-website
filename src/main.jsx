@@ -23,9 +23,9 @@ import ScrollToTop from "./components/ScrollToTop";
 
 export const api = axios.create({
   baseURL: "https://yoyotracker.onrender.com/api",
+  // baseURL: "http://localhost:5000/api",
   withCredentials: true,
 });
-// "http://localhost:5000/api"
 
 const queryClient = new QueryClient();
 

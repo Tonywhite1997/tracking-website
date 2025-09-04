@@ -33,7 +33,7 @@ function Dashboard() {
   return (
     <div>
       <Header />
-      <div className="flex min-h-screen bg-gray-50">
+      <div className="flex min-h-screen overflow-x-hidden bg-gray-50">
         {/* Sidebar */}
         <div
           className={`fixed ${headerNavHeight} left-0 h-[calc(100%-70px)] w-64 bg-orange-100 p-6 transform transition-transform duration-300 z-40
@@ -148,7 +148,7 @@ function Dashboard() {
         )}
 
         {/* Content Area */}
-        <div className={`flex-1 p-6 md:ml-64 mt-[20px]`}>
+        <div className={`flex-1 p-6 overflow-x-auto md:ml-64 mt-[20px]`}>
           <Outlet /> {/* 👈 nested routes render here */}
         </div>
       </div>
