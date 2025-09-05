@@ -1,12 +1,88 @@
+// import { Link } from "react-router-dom";
+
+// function OrdersTable({ orders }) {
+//   return (
+//     <div className="overflow-x-scroll w-full no-scrollbar">
+//       <table className="min-w-full bg-white shadow-md rounded-lg overflow-x-scroll">
+//         <thead className="bg-orange-50 text-gray-700">
+//           <tr>
+//             <th colSpan={2} className="text-left col-span-2 py-3 px-4">
+//               Name
+//             </th>
+//             <th className="text-left py-3 px-4">Tracking Code</th>
+//             <th className="text-left py-3 px-4">Status</th>
+//             <th className="text-left py-3 px-4">Email</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {orders?.data?.map((order) => (
+//             <tr
+//               key={order._id}
+//               className="border-b last:border-none border hover:bg-orange-50 transition"
+//             >
+//               <td colSpan={2} className="py-3 px-4  max-w-xs">
+//                 <Link
+//                   to={`/dashboard/order/${order._id}`}
+//                   className="block col-span-2 w-full h-full"
+//                 >
+//                   {order.name}
+//                 </Link>
+//               </td>
+//               <td className="py-3 px-4  max-w-xs">
+//                 <Link
+//                   to={`/dashboard/order/${order._id}`}
+//                   className="block w-full h-full"
+//                 >
+//                   {order.trackingCode}
+//                 </Link>
+//               </td>
+//               <td className="py-3 px-4">
+//                 <Link
+//                   to={`/dashboard/order/${order._id}`}
+//                   className="block w-full h-full"
+//                 >
+//                   <span
+//                     className={`px-2 py-1 rounded-full text-white text-sm ${
+//                       order.shippingStatus === "Delivered"
+//                         ? "bg-green-500"
+//                         : order.shippingStatus === "Pending"
+//                         ? "bg-yellow-500"
+//                         : "bg-red-500"
+//                     }`}
+//                   >
+//                     {order.shippingStatus}
+//                   </span>
+//                 </Link>
+//               </td>
+//               <td className="py-3 px-4  max-w-xs">
+//                 <Link
+//                   to={`/dashboard/order/${order._id}`}
+//                   className="block w-full h-full"
+//                 >
+//                   {order.receiver.email}
+//                 </Link>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+// export default OrdersTable;
+
 import { Link } from "react-router-dom";
 
 function OrdersTable({ orders }) {
   return (
     <div className="overflow-x-scroll w-full no-scrollbar">
-      <table className="min-w-full bg-white shadow-md rounded-lg overflow-x-scroll">
+      <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead className="bg-orange-50 text-gray-700">
           <tr>
-            <th className="text-left py-3 px-4">Name</th>
+            {/* Name now spans 2 columns */}
+            <th colSpan={2} className="text-left py-3 px-4">
+              Name
+            </th>
             <th className="text-left py-3 px-4">Tracking Code</th>
             <th className="text-left py-3 px-4">Status</th>
             <th className="text-left py-3 px-4">Email</th>
@@ -18,7 +94,8 @@ function OrdersTable({ orders }) {
               key={order._id}
               className="border-b last:border-none hover:bg-orange-50 transition"
             >
-              <td className="py-3 px-4  max-w-xs">
+              {/* Data cell also spans 2 columns */}
+              <td colSpan={2} className="py-3 px-4 max-w-xs">
                 <Link
                   to={`/dashboard/order/${order._id}`}
                   className="block w-full h-full"
@@ -26,7 +103,7 @@ function OrdersTable({ orders }) {
                   {order.name}
                 </Link>
               </td>
-              <td className="py-3 px-4  max-w-xs">
+              <td className="py-3 px-4 max-w-xs">
                 <Link
                   to={`/dashboard/order/${order._id}`}
                   className="block w-full h-full"
@@ -52,7 +129,7 @@ function OrdersTable({ orders }) {
                   </span>
                 </Link>
               </td>
-              <td className="py-3 px-4  max-w-xs">
+              <td className="py-3 px-4 max-w-xs">
                 <Link
                   to={`/dashboard/order/${order._id}`}
                   className="block w-full h-full"

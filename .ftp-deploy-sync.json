@@ -1,0 +1,10 @@
+{
+  "exclude": [
+    "**/.git*",
+    "**/.github*",
+    "**/node_modules/**",
+    "**/tests/**",
+    "**/.env",
+    "**/netlify.toml"
+  ]
+}
