@@ -29,3 +29,4 @@ jobs:
           port: 21
           local-dir: ./dist/
           server-dir: /public_html/ # Adjust if using a subdomain or subfolder
+          timeout: 190000
