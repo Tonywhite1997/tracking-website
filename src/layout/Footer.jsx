@@ -1,4 +1,5 @@
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -17,31 +18,12 @@ function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-orange-400">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-orange-400">
-                Tracking
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-orange-400">
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-orange-400">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-orange-400">
-                FAQ
-              </a>
-            </li>
+            <Link to="/">
+              <p className="hover:text-orange-400">Home</p>
+            </Link>
+            <Link to="/customer-support">
+              <p className="hover:text-orange-400">Contact</p>
+            </Link>
           </ul>
         </div>
 
@@ -49,11 +31,9 @@ function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Support</h3>
           <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-orange-400">
-                Help Center
-              </a>
-            </li>
+            <Link to="/customer-support">
+              <p className="hover:text-orange-400">Help Center</p>
+            </Link>
             <li>
               <a href="#" className="hover:text-orange-400">
                 Privacy Policy
@@ -89,7 +69,7 @@ function Footer() {
 
       {/* Bottom bar */}
       <div className="mt-10 border-t border-blue-800 pt-6 text-center text-gray-400 text-sm">
-        © {new Date().getFullYear()} ShipTrack. All rights reserved.
+        © {new Date().getFullYear()} YoyoTrack. All rights reserved.
       </div>
     </footer>
   );

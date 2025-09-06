@@ -22,7 +22,7 @@ function Header({ toggleMenu, isOpen }) {
           {/* Email Contact */}
           <div className="hidden md:flex items-center gap-2 cursor-pointer hover:underline">
             <MdEmail />
-            <p>support@shiptrack.com</p>
+            <a href="mailto:support@yoyotrack.com">support@yoyotrack.com</a>
           </div>
 
           <div className="flex items-center gap-1 cursor-pointer hover:underline">
