@@ -5,9 +5,9 @@ import CustomersCount from "../layout/home/CustomersCount";
 import Testimonial from "../layout/home/Testimonial";
 import FAQ from "../layout/home/FAQ";
 
-import Image1 from "/cargo-ship.jpg";
-import Image2 from "/cargo-lorry.jpg";
-import Image3 from "/cargo-plane.jpg";
+import Image1 from "/cargo-ship.webp";
+import Image2 from "/cargo-lorry.webp";
+import Image3 from "/cargo-plane.webp";
 
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
