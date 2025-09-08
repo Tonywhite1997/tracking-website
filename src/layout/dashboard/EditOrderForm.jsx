@@ -258,7 +258,7 @@ function OrderForm({ order }) {
               type="text"
               name="trackingCode"
               readOnly
-              value={formData.trackingCode}
+              value={formData?.trackingCode?.toUpperCase()}
               onChange={handleChange}
               className="w-full border bg-gray-200 rounded-lg p-2"
             />

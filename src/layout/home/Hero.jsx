@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [trackingCode, setTrackingCode] = useState("");
@@ -15,7 +15,10 @@ function Main() {
       return setErrMsg("Invalid Tracking Code");
     }
 
-    navigate(`track/${trackingCode}`);
+    const lowerCaseTrackingCode = trackingCode.toLowerCase();
+    console.log(lowerCaseTrackingCode);
+
+    navigate(`track/${lowerCaseTrackingCode}`);
   }
 
   function handleChange(e) {
