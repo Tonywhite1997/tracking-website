@@ -1,5 +1,5 @@
 import services from "../helperfuncs/services.js";
-import BgImage from "../../public/services-cargo.jpg";
+import BgImage from "../../public/services-cargo.webp";
 
 function Services() {
   return (

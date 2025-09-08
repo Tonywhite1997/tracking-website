@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FaMapMarkerAlt, FaRegClock, FaMailBulk } from "react-icons/fa";
-import BgImage from "../../public/call-center.jpg";
+import BgImage from "../../public/call-center.webp";
 
 function CustomerSupport() {
   const form = useRef();
