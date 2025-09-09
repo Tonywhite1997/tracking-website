@@ -23,7 +23,7 @@ export default function ShipmentTracking({ order }) {
         <h1 className="font-bold border-b-2 mb-1 border-orange-200">
           Shipment Profile
         </h1>
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between sm:flex-row flex-col gap-4">
           <div>
             <h1 className="underline">Sender Details</h1>
             <p>Name: {order.sender.name}</p>
