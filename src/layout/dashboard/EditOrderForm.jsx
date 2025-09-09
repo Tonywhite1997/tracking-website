@@ -97,6 +97,7 @@ function OrderForm({ order }) {
       id: order._id,
     });
     setIsDirty(false);
+    console.log(error);
   };
 
   const navigate = useNavigate();
@@ -350,7 +351,7 @@ function OrderForm({ order }) {
           </div>
         </div>
 
-        {error && <small>{editError}</small>}
+        {error && <small>{error?.response?.data?.msg}</small>}
 
         {/* Edit Button */}
 
