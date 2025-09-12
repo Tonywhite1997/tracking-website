@@ -9,7 +9,7 @@ function Orders() {
       {orders?.data?.length > 0 && (
         <p className="text-center">Click any order to view details</p>
       )}
-      {isLoading && <p className="text-center">loading your oders...</p>}
+      {isLoading && <p className="text-center">loading your orders...</p>}
       {isRefetching && <p className="text-center">Updating your orders...</p>}
       {isSuccess && !orders?.data?.length && !isLoading && (
         <p className="text-center text-xl mb-2 text-red-500">

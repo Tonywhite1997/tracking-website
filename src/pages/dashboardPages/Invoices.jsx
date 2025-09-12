@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
 import useOrders from "../../customHooks/useOrders";
 function Invoices() {
-  const { orders } = useOrders();
+  const { orders, isLoading, isRefetching, error, isSuccess } = useOrders();
+
   return (
     <div>
+      {isLoading && <p className="text-center">loading your Invoices...</p>}
+      {isRefetching && <p className="text-center">Updating your Invoices...</p>}
+      {isSuccess && !orders?.data?.length && !isLoading && (
+        <p className="text-center text-xl mb-2 text-red-500">
+          You have no available Invoice
+        </p>
+      )}
+      {error && (
+        <p className="text-red-500 text-center">{error?.response?.data?.msg}</p>
+      )}
       <div className="overflow-x-scroll w-full no-scrollbar">
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead className="bg-orange-50 text-gray-700">
