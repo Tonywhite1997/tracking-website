@@ -16,7 +16,7 @@ function ShowTrackInfo() {
   }, [trackingCode]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-6">
+    <div className="min-h-screen flex flex-col border items-center py-6 pt-12">
       {!trackingCode && (
         <div className="p-6 flex flex-col justify-center items-center gap-2">
           <h1>No Tracking Code found!</h1>

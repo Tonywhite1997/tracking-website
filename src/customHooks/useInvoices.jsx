@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../main";
 
-function useOrder(id) {
+function useInvoices(id) {
   const {
-    data: order,
+    data: invoices,
     isLoading,
     error,
     isRefetching,
   } = useQuery({
     queryKey: ["Order"],
-    queryFn: () => api.get(`/order/${id}`),
+    queryFn: () => api.get(`/invoices/${id}`),
     retry: 1,
   });
 
-  return { order, isRefetching, isLoading, error };
+  return { invoices, isRefetching, isLoading, error };
 }
 
-export default useOrder;
+export default useInvoices;

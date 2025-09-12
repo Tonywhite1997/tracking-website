@@ -17,6 +17,8 @@ import OrderDetails from "./pages/dashboardPages/OrderDetails";
 import ShowTrackInfo from "./pages/TrackPage/ShowTrackInfo";
 import AllOrders from "./pages/dashboardPages/AllOrders";
 import Users from "./pages/dashboardPages/Users";
+import Invoices from "./pages/dashboardPages/Invoices";
+import InvoiceDetails from "./pages/dashboardPages/InvoiceDetails";
 import EditUser from "./pages/dashboardPages/EditUser";
 import ChangePassword from "./pages/dashboardPages/ChangePassword";
 import ScrollToTop from "./components/ScrollToTop";
@@ -62,6 +64,8 @@ const router = createBrowserRouter([
       { path: "sign-up", element: <CreateUser /> },
       { path: "all-orders", element: <AllOrders /> },
       { path: "users", element: <Users /> },
+      { path: "invoices", element: <Invoices /> },
+      { path: "invoice/:id", element: <InvoiceDetails /> },
       { path: "users/:id", element: <EditUser /> },
       { path: "password", element: <ChangePassword /> },
     ],

@@ -8,6 +8,7 @@ import {
   FaBars,
   FaTimes,
   FaUsers,
+  FaFileInvoice,
 } from "react-icons/fa";
 import { FiPlusCircle } from "react-icons/fi";
 import { LogOut } from "lucide-react";
@@ -82,6 +83,18 @@ function Dashboard() {
             onClick={() => setIsOpen(false)}
           >
             <FaUser /> New User
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/invoices"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded-md transition w-full ${
+                isActive ? "bg-orange-600" : "hover:bg-orange-400"
+              }`
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            <FaFileInvoice /> Invoices
           </NavLink>
 
           <NavLink

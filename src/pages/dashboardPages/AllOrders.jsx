@@ -28,6 +28,7 @@ function AllOrders() {
                 <th className="text-left py-3 px-4">Tracking Code</th>
                 <th className="text-left py-3 px-4">Status</th>
                 <th className="text-left py-3 px-4">Creator</th>
+                <th className="text-left py-3 px-4">Print Invoice</th>
               </tr>
             </thead>
             <tbody>
@@ -76,6 +77,15 @@ function AllOrders() {
                       className="block w-full h-full"
                     >
                       {order.creator.email}
+                    </Link>
+                  </td>
+
+                  <td className="py-3 px-4 max-w-xs">
+                    <Link
+                      to={`/dashboard/invoice/${order._id}`}
+                      className="block w-full text-center bg-orange-400 text-white p-2 px-4 cursor-pointer h-full border rounded-md"
+                    >
+                      Print
                     </Link>
                   </td>
                 </tr>
