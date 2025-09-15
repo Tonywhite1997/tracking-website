@@ -15,10 +15,7 @@ function Main() {
       return setErrMsg("Invalid Tracking Code");
     }
 
-    const lowerCaseTrackingCode = trackingCode.toLowerCase();
-    console.log(lowerCaseTrackingCode);
-
-    navigate(`track/${lowerCaseTrackingCode}`);
+    navigate(`track/${trackingCode}`);
   }
 
   function handleChange(e) {
